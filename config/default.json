@@ -1,0 +1,4 @@
+{
+  "mongoURI": "mongodb+srv://knightrider:G6Q7q8V5GOXiqmmC@knightsrides-cuiqj.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "asdfasdf12341234"
+}
