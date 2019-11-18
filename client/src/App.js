@@ -5,6 +5,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreateTodo from "./components/create-todo.component";
 import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
+import Profile from "./components/profile.component";
 
 import logo from "./UCF.png";
 
@@ -16,11 +17,14 @@ class App extends Component {
 
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="https://maps.google.com" target="_blank">
-              <img src={logo} width="30" height="30" alt="Logo" />
+              <img src={logo} width="30" height="40" alt="Logo" />
             </a>
             <Link to="/" className="navbar-brand">Knights Rides</Link>
             <div className="collapse navbar-collapse">
               <ul className="navbar-nav mr-auto">
+                <li className="navbar-item">
+                  <Link to="/profile" className="nav-link">Profile</Link>
+                </li>
                 <li className="navbar-item">
                   <Link to="/" className="nav-link">Rides</Link>
                 </li>
@@ -34,6 +38,7 @@ class App extends Component {
           <Route path="/" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
+          <Route path="/profile" component={Profile} />
         </div>
       </Router>
     );
