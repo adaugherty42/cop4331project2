@@ -173,6 +173,7 @@ router.put(
     try {
       const profile = await Profile.findOne({ user: req.user.id });
       profile.schedule = schedule;
+      await profile.save();
     } catch (err) {
       console.error(err.message);
       return res.status(500).send('Server Error');
