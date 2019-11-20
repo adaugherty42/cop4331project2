@@ -13,11 +13,11 @@ class App extends Component {
   render() {
     return (
       <Router> 
-        <div className="container">
+        <div className="container-fluid">
 
           <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <a className="navbar-brand" href="https://maps.google.com" target="_blank">
-              <img src={logo} width="30" height="40" alt="Logo" />
+              <img src={logo} width="35" height="40" alt="Logo" />
             </a>
             <Link to="/" className="navbar-brand">Knights Rides</Link>
             <div className="collapse navbar-collapse">
