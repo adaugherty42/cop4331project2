@@ -11,6 +11,9 @@ const RideSchema = new mongoose.Schema({
   },
   date: {
     type: mongoose.Schema.Types.Date
+  },
+  status: {
+    type: mongoose.Schema.Types.String
   }
 });
 

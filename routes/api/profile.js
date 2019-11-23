@@ -11,10 +11,9 @@ const User = require('../../models/User');
 // @access  Private
 router.get('/me', auth, async (req, res) => {
   try {
-    const profile = await Profile.findOne({ user: req.user.id }).populate(
-      'user',
-      ['name']
-    );
+    const profile = await Profile.findOne({
+      user: req.user.id
+    }).populate('user', ['name']);
 
     if (!profile) {
       return res
@@ -59,7 +58,6 @@ router.post(
     }
 
     const { balance, address, about, seeking_rides, offering_rides } = req.body;
-
     // Build profile objects
     const profileFields = {};
     profileFields.user = req.user.id;
@@ -67,26 +65,15 @@ router.post(
     profileFields.address = address;
     if (about) profileFields.about = about;
     profileFields.seeking_rides = seeking_rides;
-    profile.offering_rides = offering_rides;
+    profileFields.offering_rides = offering_rides;
 
     try {
-      // Try to find the profile in our database.
-      let profile = await Profile.findOne({ user: req.user.id });
-
-      // If it exists, we need to update it with what the user just provided as a request.
-      if (profile) {
-        profile = await Profile.findOneAndUpdate(
-          { user: req.user.id },
-          { $set: profileFields },
-          { new: true }
-        );
-
-        return res.json(profile);
-      }
-
-      // If the profile does not exist, we should create it.
-      profile = new Profile(profileFields);
-      await Profile.save();
+      // Using upsert option (creates new doc if no match is found):
+      let profile = await Profile.findOneAndUpdate(
+        { user: req.user.id },
+        { $set: profileFields },
+        { new: true, upsert: true }
+      );
       res.json(profile);
     } catch (err) {
       console.error(err.message);
