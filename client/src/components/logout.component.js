@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class TodosList extends Component {
+export default class Logout extends Component {
     render() {
         return (
             <div>
-                <p>Welcome To RidesPage! </p>
+                <p>Welcome to Logout Component!</p>
             </div>
         )
     }

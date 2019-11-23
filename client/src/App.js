@@ -6,6 +6,8 @@ import CreateTodo from "./components/create-todo.component";
 import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
 import Profile from "./components/profile.component";
+import Logout from "./components/logout.component";
+import Home from "./components/homepage.component";
 
 import logo from "./UCF.png";
 
@@ -14,10 +16,9 @@ class App extends Component {
     return (
       <Router> 
         <div className="container-fluid">
-
-          <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
             <a className="navbar-brand" href="https://maps.google.com" target="_blank">
-              <img src={logo} width="35" height="40" alt="Logo" />
+              <img src={logo} width="30" height="40" alt="Logo" />
             </a>
             <Link to="/" className="navbar-brand">Knights Rides</Link>
             <div className="collapse navbar-collapse">
@@ -26,23 +27,29 @@ class App extends Component {
                   <Link to="/profile" className="nav-link">Profile</Link>
                 </li>
                 <li className="navbar-item">
-                  <Link to="/" className="nav-link">Rides</Link>
+                  <Link to="/rides" className="nav-link">Rides</Link>
                 </li>
                 <li className="navbar-item">
                   <Link to="/create" className="nav-link">Schedule Ride</Link>
                 </li>
               </ul>
+              <ul className="navbar-nav navbar-right">
+                <li className="navbar-item">
+                  <Link to="/loggedout" className="nav-link glyphicon glyphicon-log-in">Logout</Link>
+                </li>
+              </ul>
             </div>
           </nav>
-
-          <Route path="/" exact component={TodosList} />
+          
+          <Route path="/" exact component={Home} />
+          <Route path="/rides" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
           <Route path="/profile" component={Profile} />
+          <Route path="/loggedout" component={Logout} />
         </div>
       </Router>
     );
   }
 }
-
 export default App;
